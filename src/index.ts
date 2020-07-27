@@ -1,0 +1,13 @@
+require('./models/Essay');
+require('./models/EssayIteration');
+require('./models/topping');
+require('./models/pizza');
+require('./config/database');
+import server from './config/server';
+
+const PORT = process.env.PORT || 8081;
+
+// start the Express server
+server.listen(PORT, () => {
+   console.log(`server started at http://localhost:${PORT}`);
+});

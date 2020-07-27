@@ -1,0 +1,40 @@
+{
+    "extends": [
+        "tslint-config-airbnb",
+        "tslint-config-prettier"
+    ],
+    "linterOptions": {
+        "exclude": [
+            "config/**/*.js",
+            "node_modules/**/*.ts",
+            "coverage/lcov-report/*.js"
+        ]
+    },
+    "rules": {
+        "jsx-no-lambda": false,
+        "semicolon": [
+            true,
+            "always"
+        ],
+        "indent": [
+            true,
+            "spaces",
+            4
+        ],
+        "quotemark": [
+            true,
+            "single",
+            "jsx-double"
+        ],
+        "import-name": [
+            false
+        ],
+        "variable-name": {
+            "options": [
+                "allow-pascal-case"
+            ]
+        },
+        "no-this-assignment": false
+    },
+    "defaultSeverity": "warning"
+}
