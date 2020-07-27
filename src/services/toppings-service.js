@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 
-import { Service } from './Service';
+import { Service } from './service';
 
 
-export default class PizzasService extends Service {
+export default class ToppingsService extends Service {
    constructor(model: mongoose.Model<mongoose.Document>) {
       super(model);
    }

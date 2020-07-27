@@ -3,10 +3,12 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import * as dotenv from 'dotenv';
+
 import toppings from '../routes/toppings-routes';
 import pizzas from '../routes/pizzas-routes';
 
-
+dotenv.config();
 const server = express();
 
 // enhance your app security with Helmet
