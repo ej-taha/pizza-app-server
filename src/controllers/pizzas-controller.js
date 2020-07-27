@@ -7,7 +7,7 @@ const pizzasService = new PizzasService(mongoose.model('Pizza'));
 
 class PizzasController extends Controller {
 
-   constructor(service: PizzasService) {
+   constructor(service) {
       super(service);
    }
 

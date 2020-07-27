@@ -2,9 +2,9 @@ import mongoose from 'mongoose';
 import Debug from 'debug';
 
 export class Service {
-   model: mongoose.Model<mongoose.Document>;
+   model;
 
-   constructor(model: mongoose.Model<mongoose.Document>) {
+   constructor(model) {
       this.model = model;
       this.getAll = this.getAll.bind(this);
       this.insert = this.insert.bind(this);
@@ -12,7 +12,7 @@ export class Service {
       this.delete = this.delete.bind(this);
    }
 
-   async getAll(query: any) {
+   async getAll(query) {
       const debug = Debug(`debug:${(this.constructor).name}`);
       let { skip, limit } = query;
 
@@ -54,7 +54,7 @@ export class Service {
       }
    }
 
-   async insert(data: any) {
+   async insert(data) {
       const debug = Debug(`debug:${(this.constructor).name}`);
       try {
          debug(data.toppings);
@@ -74,7 +74,7 @@ export class Service {
       }
    }
 
-   async update(id: any, data: any) {
+   async update(id, data) {
       try {
          const item = await this.model.findByIdAndUpdate(id, { $set: data }, { new: true });
          return {
@@ -90,7 +90,7 @@ export class Service {
       }
    }
 
-   async delete(id: any) {
+   async delete(id) {
       try {
          const item = await this.model.findByIdAndDelete(id);
          if (!item) {
