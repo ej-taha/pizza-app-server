@@ -1,5 +1,3 @@
-require('./models/Essay');
-require('./models/EssayIteration');
 require('./models/topping');
 require('./models/pizza');
 require('./config/database');
