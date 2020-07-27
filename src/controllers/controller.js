@@ -17,15 +17,15 @@ class Controller {
    async getAll(req, res) {
       const response = await this.service.getAll(req.query);
       if (response.error)
-         return res.status(response.statusCode).send(response.items);
-      return res.status(response.statusCode).send(response.errorMessage);
+         return res.status(response.statusCode).send(response.errorMessage);
+      return res.status(response.statusCode).send(response.items);
    }
 
    async insert(req, res) {
       this.debug('req bodyyyy', req.body);
       const response = await this.service.insert(req.body);
-      if (response.errorMessage)
-         return res.status(500).send(response);
+      if (response.error)
+         return res.status(500).send(response.errorMessage);
       return res.status(201).send(response.created);
    }
 
