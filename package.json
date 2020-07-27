@@ -1,7 +1,9 @@
 {
    "main": "dist/index.js",
    "scripts": {
-      "start": "build && node .",
+      "start": "npm run dev",
+      "server": "node ./dist",
+      "dev": "NODE_ENV=development npm-run-all build server",
       "transpile": "babel ./src --out-dir dist",
       "clean": "rimraf dist",
       "build": "npm-run-all clean transpile",
