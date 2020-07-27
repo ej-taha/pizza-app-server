@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Debug from 'debug';
 
-import Service from '../services/service';
+import { Service } from '../services/service';
 
 class Controller {
    service: any;
