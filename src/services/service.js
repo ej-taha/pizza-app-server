@@ -39,15 +39,14 @@ export class Service {
 
          debug(items);
 
-         return items; /* {
-            total,
+         return {
+            items,
             error: false,
             statusCode: 200,
-            data: items
-         }; */
+         };
       } catch (errors) {
          return {
-            errors,
+            errorMessage: errors,
             error: true,
             statusCode: 500
          };
@@ -61,15 +60,14 @@ export class Service {
          const item = await this.model.create(data);
          if (item) {
             return {
+               error: false,
                created: item,
-               error: false
             };
          }
       } catch (error) {
-         console.log('error', error);
          return {
             error: true,
-            errors: error.errors
+            errorMessage: error
          };
       }
    }
@@ -78,13 +76,14 @@ export class Service {
       try {
          const item = await this.model.findByIdAndUpdate(id, { $set: data }, { new: true });
          return {
-            item,
+            updated: item,
             error: false,
             statusCode: 202
          };
       } catch (error) {
          return {
-            error,
+            error: true,
+            errorMessage: error
             statusCode: 500
          };
       }
@@ -97,19 +96,19 @@ export class Service {
             return {
                error: true,
                statusCode: 404,
-               message: 'item not found'
+               errorMessage: 'item not found'
             };
          }
 
          return {
-            item,
             error: false,
-            deleted: true,
+            deleted: item,
             statusCode: 202
          };
       } catch (error) {
          return {
-            error,
+            error: true,
+            errorMessage: error,
             statusCode: 500,
          };
       }

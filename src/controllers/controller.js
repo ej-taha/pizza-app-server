@@ -1,4 +1,3 @@
-import { Request, Response } from 'express';
 import Debug from 'debug';
 
 import { Service } from '../services/service';
@@ -16,14 +15,18 @@ class Controller {
    }
 
    async getAll(req, res) {
-      return res.status(200).send(await this.service.getAll(req.query));
+      const response = await this.service.getAll(req.query);
+      if (response.error)
+         return res.status(response.statusCode).send(response.items);
+      return res.status(response.statusCode).send(response.errorMessage);
    }
 
    async insert(req, res) {
       this.debug('req bodyyyy', req.body);
       const response = await this.service.insert(req.body);
-      if (response.error) return res.status(500).send(response);
-      return res.status(201).send(response);
+      if (response.errorMessage)
+         return res.status(500).send(response);
+      return res.status(201).send(response.created);
    }
 
    async update(req, res) {
@@ -31,7 +34,9 @@ class Controller {
 
       const response = await this.service.update(id, req.body);
 
-      return res.status(response.statusCode).send(response);
+      if (response.error)
+         return res.status(response.statusCode).send(response.errorMessage);
+      return res.status(response.statusCode).send(response.updated);
    }
 
    async delete(req, res) {
@@ -39,7 +44,9 @@ class Controller {
 
       const response = await this.service.delete(id);
 
-      return res.status(response.statusCode).send(response);
+      if (response.error)
+         return res.status(response.statusCode).send(response.errorMessage)
+      return res.status(response.statusCode).send(response.deleted);
    }
 
 }
