@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-import Service from './Service';
+import { Service } from './Service';
 
 
 export default class PizzasService extends Service {

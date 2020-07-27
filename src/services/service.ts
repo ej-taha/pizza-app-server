@@ -1,9 +1,7 @@
 import mongoose from 'mongoose';
 import Debug from 'debug';
 
-const util = require('util');
-
-class Service {
+export class Service {
    model: mongoose.Model<mongoose.Document>;
 
    constructor(model: mongoose.Model<mongoose.Document>) {
@@ -57,14 +55,7 @@ class Service {
    }
 
    async insert(data: any) {
-      const dummy = {
-         name: 'dummy pizza',
-         toppings: [{
-            name: 'dummy topping'
-         }]
-      };
       const debug = Debug(`debug:${(this.constructor).name}`);
-      debug(`post/${util.inspect(data, false, null)}`);
       try {
          debug(data.toppings);
          const item = await this.model.create(data);
@@ -124,5 +115,3 @@ class Service {
       }
    }
 }
-
-export default Service;
