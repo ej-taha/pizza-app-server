@@ -83,7 +83,7 @@ export class Service {
       } catch (error) {
          return {
             error: true,
-            errorMessage: error
+            errorMessage: error,
             statusCode: 500
          };
       }
