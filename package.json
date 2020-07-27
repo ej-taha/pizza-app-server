@@ -1,9 +1,8 @@
 {
    "main": "dist/index.js",
    "scripts": {
-      "start": "npm run dev",
+      "start": "npm-run-all build server",
       "server": "node ./dist",
-      "dev": "NODE_ENV=development npm-run-all build server",
       "transpile": "babel ./src --out-dir dist",
       "clean": "rimraf dist",
       "build": "npm-run-all clean transpile",
@@ -14,12 +13,14 @@
          "@babel/preset-env"
       ],
       "plugins": [
-         "babel-plugin-transform-class-properties"
+         "babel-plugin-transform-class-properties",
+         "@babel/plugin-transform-runtime"
       ]
    },
    "dependencies": {
       "@babel/cli": "^7.10.5",
       "@babel/core": "^7.10.5",
+      "@babel/plugin-transform-runtime": "^7.10.5",
       "@babel/preset-env": "^7.10.4",
       "@types/sanitize-html": "^1.23.0",
       "babel-plugin-transform-class-properties": "^6.24.1",
